@@ -1,0 +1,13 @@
+.git*
+.venv/
+.validation/
+.deploy/
+__pycache__/
+tests/
+tools/
+sql/
+*.zip
+README.md
+VALIDACION.json
+local.settings*.json
+profile.example.json

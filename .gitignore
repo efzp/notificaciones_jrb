@@ -1,0 +1,25 @@
+.venv/
+.python_packages/
+__pycache__/
+*.pyc
+local.settings.json
+.validation/
+.deploy/
+*.zip
+# Fuentes y resultados de auditoria: permanecen fuera del repositorio.
+*.pst
+*.ost
+*.msg
+*.eml
+*.xlsx
+*.xlsm
+*.xls
+*.xlsb
+*.pdf
+*.docx
+inputs/
+outputs/
+data/
+.env
+.env.*
+!.env.example

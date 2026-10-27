@@ -1,0 +1,511 @@
+{
+  "id_perfil": 1,
+  "fecha_minima": "2025-01-01",
+  "fecha_maxima": "2027-12-31",
+  "version_parser": "sabana-fechas/1.0",
+  "version_modelo": "1.0.0",
+  "fields": [
+    {
+      "campo": "fecha_audiencia",
+      "orden": 1,
+      "tipo_dato": "FECHA",
+      "obligatorio": true,
+      "longitud_maxima": null,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "tipo_de_dictamen",
+      "orden": 2,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "reparto_paciente",
+      "orden": 3,
+      "tipo_dato": "IDENTIFICADOR",
+      "obligatorio": true,
+      "longitud_maxima": 100,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "identificacion_paciente",
+      "orden": 4,
+      "tipo_dato": "IDENTIFICADOR",
+      "obligatorio": true,
+      "longitud_maxima": 50,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "nombre_paciente",
+      "orden": 5,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "medico_ponente",
+      "orden": 6,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "fecha_fijacion",
+      "orden": 7,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "fecha_desfijacion",
+      "orden": 8,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "documento_notificacion_paciente",
+      "orden": 9,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_paciente",
+      "orden": 10,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_paciente",
+      "orden": 11,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_paciente",
+      "orden": 12,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_paciente",
+      "orden": 13,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_paciente",
+      "orden": 14,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "paciente",
+      "bit_no_aplica": 64
+    },
+    {
+      "campo": "entidad_remitente",
+      "orden": 15,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": null,
+      "bit_no_aplica": null
+    },
+    {
+      "campo": "arl",
+      "orden": 16,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 1
+    },
+    {
+      "campo": "documento_notificacion_arl",
+      "orden": 17,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_arl",
+      "orden": 18,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_arl",
+      "orden": 19,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_arl",
+      "orden": 20,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_arl",
+      "orden": 21,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_arl",
+      "orden": 22,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "arl",
+      "bit_no_aplica": 64
+    },
+    {
+      "campo": "afp",
+      "orden": 23,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 1
+    },
+    {
+      "campo": "documento_notificacion_afp",
+      "orden": 24,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_afp",
+      "orden": 25,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_afp",
+      "orden": 26,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_afp",
+      "orden": 27,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_afp",
+      "orden": 28,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_afp",
+      "orden": 29,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "afp",
+      "bit_no_aplica": 64
+    },
+    {
+      "campo": "eps",
+      "orden": 30,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 1
+    },
+    {
+      "campo": "documento_notificacion_eps",
+      "orden": 31,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_eps",
+      "orden": 32,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_eps",
+      "orden": 33,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_eps",
+      "orden": 34,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_eps",
+      "orden": 35,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_eps",
+      "orden": 36,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "eps",
+      "bit_no_aplica": 64
+    },
+    {
+      "campo": "aseguradora",
+      "orden": 37,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 1
+    },
+    {
+      "campo": "documento_notificacion_aseguradora",
+      "orden": 38,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_aseguradora",
+      "orden": 39,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_aseguradora",
+      "orden": 40,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_aseguradora",
+      "orden": 41,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_aseguradora",
+      "orden": 42,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_aseguradora",
+      "orden": 43,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "aseguradora",
+      "bit_no_aplica": 64
+    },
+    {
+      "campo": "ultimo_empleador",
+      "orden": 44,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 500,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 1
+    },
+    {
+      "campo": "documento_notificacion_ultimoempleador",
+      "orden": 45,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 2
+    },
+    {
+      "campo": "estado_ultimoempleador",
+      "orden": 46,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 100,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 4
+    },
+    {
+      "campo": "fecha_notificacion_ultimoempleador",
+      "orden": 47,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 8
+    },
+    {
+      "campo": "fecha_envio_ultimoempleador",
+      "orden": 48,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 16
+    },
+    {
+      "campo": "guia_ultimoempleador",
+      "orden": 49,
+      "tipo_dato": "TEXTO",
+      "obligatorio": false,
+      "longitud_maxima": 150,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 32
+    },
+    {
+      "campo": "fecha_recibido_ultimoempleador",
+      "orden": 50,
+      "tipo_dato": "FECHA",
+      "obligatorio": false,
+      "longitud_maxima": null,
+      "tipo_parte": "ultimoempleador",
+      "bit_no_aplica": 64
+    }
+  ],
+  "aliases": {
+    "fecha_audiencia": "fecha_audiencia",
+    "tipo_de_dictamen": "tipo_de_dictamen",
+    "reparto_paciente": "reparto_paciente",
+    "identificacion_paciente": "identificacion_paciente",
+    "nombre_paciente": "nombre_paciente",
+    "medico_ponente": "medico_ponente",
+    "fecha_fijacion": "fecha_fijacion",
+    "fecha_desfijacion": "fecha_desfijacion",
+    "documento_notificacion_paciente": "documento_notificacion_paciente",
+    "estado_paciente": "estado_paciente",
+    "fecha_notificacion_paciente": "fecha_notificacion_paciente",
+    "fecha_envio_paciente": "fecha_envio_paciente",
+    "guia_paciente": "guia_paciente",
+    "fecha_recibido_paciente": "fecha_recibido_paciente",
+    "entidad_remitente": "entidad_remitente",
+    "arl": "arl",
+    "documento_notificacion_arl": "documento_notificacion_arl",
+    "estado_arl": "estado_arl",
+    "fecha_notificacion_arl": "fecha_notificacion_arl",
+    "fecha_envio_arl": "fecha_envio_arl",
+    "guia_arl": "guia_arl",
+    "fecha_recibido_arl": "fecha_recibido_arl",
+    "afp": "afp",
+    "documento_notificacion_afp": "documento_notificacion_afp",
+    "estado_afp": "estado_afp",
+    "fecha_notificacion_afp": "fecha_notificacion_afp",
+    "fecha_envio_afp": "fecha_envio_afp",
+    "guia_afp": "guia_afp",
+    "fecha_recibido_afp": "fecha_recibido_afp",
+    "eps": "eps",
+    "documento_notificacion_eps": "documento_notificacion_eps",
+    "estado_eps": "estado_eps",
+    "fecha_notificacion_eps": "fecha_notificacion_eps",
+    "fecha_envio_eps": "fecha_envio_eps",
+    "guia_eps": "guia_eps",
+    "fecha_recibido_eps": "fecha_recibido_eps",
+    "aseguradora": "aseguradora",
+    "documento_notificacion_aseguradora": "documento_notificacion_aseguradora",
+    "estado_aseguradora": "estado_aseguradora",
+    "fecha_notificacion_aseguradora": "fecha_notificacion_aseguradora",
+    "fecha_envio_aseguradora": "fecha_envio_aseguradora",
+    "guia_aseguradora": "guia_aseguradora",
+    "fecha_recibido_aseguradora": "fecha_recibido_aseguradora",
+    "ultimo_empleador": "ultimo_empleador",
+    "documento_notificacion_ultimoempleador": "documento_notificacion_ultimoempleador",
+    "estado_ultimoempleador": "estado_ultimoempleador",
+    "fecha_notificacion_ultimoempleador": "fecha_notificacion_ultimoempleador",
+    "fecha_envio_ultimoempleador": "fecha_envio_ultimoempleador",
+    "guia_ultimoempleador": "guia_ultimoempleador",
+    "fecha_recibido_ultimoempleador": "fecha_recibido_ultimoempleador"
+  }
+}

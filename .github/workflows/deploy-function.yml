@@ -1,0 +1,81 @@
+name: Validar y desplegar Function Sabana
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Pruebas Python
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Instalar dependencias de pruebas
+        run: python -m pip install -r requirements.txt
+
+      - name: Ejecutar pruebas sin SQL
+        run: python -m unittest discover -s tests -v
+
+  deploy:
+    name: Publicar en Azure
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.AZURE_FUNCTIONAPP_NAME != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: function-sabana-dev-deploy
+      cancel-in-progress: false
+    env:
+      AZURE_FUNCTIONAPP_NAME: ${{ vars.AZURE_FUNCTIONAPP_NAME }}
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Validar destino
+        shell: bash
+        run: test -n "$AZURE_FUNCTIONAPP_NAME"
+
+      - name: Preparar solo los archivos de ejecucion
+        run: python tools/preparar_paquete.py .deploy
+
+      - name: Autenticar con OIDC
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Desplegar en Flex Consumption
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: .deploy
+          remote-build: true
