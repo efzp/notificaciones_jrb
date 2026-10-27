@@ -2,14 +2,15 @@
   ".funcignore": "430537dcee5c1a15dcc31a2b0149a0cd1bba4fe05bede676dd8d089486d138b9",
   ".github/workflows/deploy-function.yml": "6da7779d62548ae57d09c2717127a79b098caedacbcdd00e63179ceb9c2f2b85",
   ".gitignore": "a961ea27143757b03c278248151a543712e7c153bea378491675c4b02378bcd3",
+  "README.md": "0605c3f04973b96efe6736a683d340b610f699fe2a3171835eb8d0979498303f",
+  "VALIDACION.json": "6a6d717cbaf053937c0a55e891b121a2bce41fb9ba36d783c5ac7fbe64a03fac",
   "function_app.py": "1b7465c45ca0350688f73c60a699f3d8b2744130a03f51a66b5968464443563e",
   "host.json": "90e2149c21922947c474ae113e221e154dd5316199b5bf098e69f2198633fbaf",
   "local.settings.example.json": "bba22ffe14252eeb19ae018036a4a5186b128f4be74fa10dd75784c614c604d8",
   "profile.example.json": "328c0fcb2784f1a7413a6f2424047b68df398cbb32ca5ae2e8cfbdcc85e5f987",
-  "README.md": "0605c3f04973b96efe6736a683d340b610f699fe2a3171835eb8d0979498303f",
   "requirements.txt": "d0d753ac51f5dc0df9d6242346a5d7d963b3512cd3e6b43004b2d4360f361291",
   "sabana/__init__.py": "3165e25d727b91f2f9f18cc27523cdcc8e8810f4a57ed2e3269fb132e732b0d8",
-  "sabana/database.py": "84a9970b371b9e9e4d306e1c6ca90e9ff82c1b104e3dda49c58ed1616cf5ee5d",
+  "sabana/database.py": "b712057289ffcc76866284585161bed9b63db5e64ec0b41da4feeb57a8a8164b",
   "sabana/domain.py": "82cfe3dd8670a8f8d1777d19968b8e27276052c8b185e0f8ffa7fb5f58523f5a",
   "sabana/excel.py": "e912cfa19d25007b6ca99c01b01517609f36efe7bc9f4e2c3a836bfd5f1a92e3",
   "sabana/service.py": "7861fd680d5281dea4b89608111558e51b97598036903296a5e24f3b7bd9b72e",
@@ -23,6 +24,5 @@
   "tests/test_sabana.py": "53070c916d4f8bfd5607ec549047b0a369ad00e4dca44b166d68a66d3843140a",
   "tools/enviar_archivo.ps1": "3764adef748764292f9bb4c6488f145d28e996a47d700064dbc07c550ee5e504",
   "tools/preparar_paquete.py": "d02887192c7665374a68aea1cec0626e6851d437ddf5230c14cddab335770fb8",
-  "tools/validar_corpus.py": "d39d62f6804b4b4964fc9ea9ac87cfef11afc257aa27f410c5c463e9d43d3b07",
-  "VALIDACION.json": "6a6d717cbaf053937c0a55e891b121a2bce41fb9ba36d783c5ac7fbe64a03fac"
+  "tools/validar_corpus.py": "d39d62f6804b4b4964fc9ea9ac87cfef11afc257aa27f410c5c463e9d43d3b07"
 }

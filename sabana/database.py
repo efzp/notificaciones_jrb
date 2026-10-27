@@ -284,8 +284,11 @@ class SqlRepository:
         case_data_id = self.ensure("core.caso_dato", {"id_caso": case_id, "hash_datos": fact_hash(case_data)}, case_data)
         sender_id = self._entity(values["entidad_remitente"])
         row_id = self.one(
+            # SQL exige OUTPUT INTO cuando la tabla tiene un trigger INSERT.
+            "DECLARE @filas_insertadas TABLE (id_fila bigint NOT NULL); "
             "INSERT ing.fila_origen(id_carga,id_perfil,hoja,numero_fila,id_caso,id_caso_dato,id_entidad_remitente) "
-            "OUTPUT inserted.id_fila VALUES(?,?,?,?,?,?,?);",
+            "OUTPUT inserted.id_fila INTO @filas_insertadas(id_fila) VALUES(?,?,?,?,?,?,?); "
+            "SELECT id_fila FROM @filas_insertadas;",
             (load_id, payload.id_perfil, sheet, row.number, case_id, case_data_id, sender_id)
         )["id_fila"]
         for part in PARTS:
