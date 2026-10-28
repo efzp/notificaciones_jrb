@@ -1,0 +1,50 @@
+{
+  "fecha": "2026-10-28",
+  "pruebas_unitarias": {
+    "total": 57,
+    "resultado": "OK",
+    "incluye_regresion_excel": true
+  },
+  "piloto_lector": {
+    "version": "20260926",
+    "tamano_pst_bytes": 7430145024,
+    "mensajes_examinados": 40,
+    "extraidos": 40,
+    "destinatarios_observados": 185,
+    "destinatarios_mapi": 97,
+    "adjuntos_metadata": 110,
+    "referencias": 102,
+    "carpetas": 34,
+    "elementos_reportados": 6996,
+    "errores_muestra": 0,
+    "modo": "solo lectura, sin Azure ni SQL"
+  },
+  "sql": {
+    "scripts": [
+      "07_tablas_pst.sql",
+      "08_pst_asincrono.sql"
+    ],
+    "sintaxis": "ScriptDom TSql160Parser: 0 errores",
+    "ejecutado_en_motor": false
+  },
+  "linux": {
+    "wheel_cp312_manylinux_x86_64_disponible": true,
+    "importacion_nativa_se_comprueba_en_github_actions": true,
+    "ejecutada_en_linux_local": false
+  },
+  "desplegado_en_azure": false,
+  "prueba_sharepoint_blob_sql_ejecutada": false,
+  "archivos_python_compilables": 10,
+  "sha256_codigo": {
+    "function_app.py": "4dca35398cab802dba0386d50260ebde5e1e4db64d18b1c89ee14dfc8133bbff",
+    "pst/__init__.py": "755c972feef90f7ee8a7a0fbbb7e073fc4a6a4f557271586b036c3caa8dd0599",
+    "pst/cloud.py": "d256141755fa71d2cd25a9b3950cc45c65f7e6a25b4f79cb69200d3077622483",
+    "pst/domain.py": "ec01e12f8e9e20e50bc962bdd0623678e6a66774a9b15b003eb66f3f7e64585a",
+    "pst/extract.py": "3e335e453550aebfddadfe91288a3bf70c5a26ae55be56b944d6d4e2861b226a",
+    "pst/functions.py": "1c23183b9a2be10f60b8fbcccfa46887d4932c2005155ae8ed4e6c2f2223eb5f",
+    "pst/range_io.py": "020293786e9921cab9e47fb0dffd23bf5f670799898b7217fe4f5429e46c1c2a",
+    "pst/repository.py": "c1c9c10b3b2217158da4e5f627ba6cf793e06cb310cdea1233639984794447f0",
+    "pst/service.py": "efa360417961e46ea439687941ec5f17d8654e8ac8a4b45c80db7e4a018fd8a7",
+    "tools/validar_pst_local.py": "02220d86c47d78462c8c4d9cbf97d5713c5769c427cc5b1072e3c0449cb6f889"
+  }
+}

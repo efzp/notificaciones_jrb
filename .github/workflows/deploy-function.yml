@@ -34,6 +34,9 @@ jobs:
       - name: Ejecutar pruebas sin SQL
         run: python -m unittest discover -s tests -v
 
+      - name: Verificar lector PST para Linux
+        run: python -c "import pypff; assert pypff.get_version() == '20260926'; print('Lector PST Linux disponible')"
+
   deploy:
     name: Publicar en Azure
     needs: test

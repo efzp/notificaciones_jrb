@@ -1,19 +1,21 @@
 # Procesamiento de auditorias de notificaciones JRB
 
+La ingestión asíncrona de PST está implementada en `pst/`; consultar [configuración, SQL y Power Automate](PST_CONFIGURACION.md). Devuelve HTTP 202, usa Durable Functions y requiere aplicar `sql/08_pst_asincrono.sql` después del DDL PST. Este componente todavía requiere configuración de permisos y piloto en Azure.
+
 Repositorio de codigo y configuracion para procesar reportes de SharePoint, tabularizar PST, cruzar evidencias de envio y lectura, y procesar insumos de auditoria. Los archivos fuente permanecen fuera del repositorio.
 
 | Componente | Estado actual |
 |---|---|
-| Consolidacion Sabana en Azure SQL | Function Python implementada, pendiente de piloto de integracion en Azure |
+| Consolidacion Sabana en Azure SQL | Componente desplegado y validado previamente en Azure |
 | Modelo SQL y control de cargas | Scripts incluidos en `sql/`, preparados para instalacion y verificacion |
 | Despliegue con GitHub Actions | Workflow con pruebas y publicacion mediante OIDC |
-| Tabularizacion PST | Alcance previsto; pendiente de integrar como componente del repositorio |
+| Tabularizacion PST | Ingestion asincrona implementada; pendiente de configurar y validar en Azure |
 | Cruces de envio, entrega y lectura | Alcance previsto; pendiente de implementacion |
 | Procesamiento de otros insumos de auditoria | Alcance previsto; pendiente de implementacion |
 
 ## Function de consolidacion Sabana
 
-Implementación Python 3.12, Azure Functions runtime 4 y modelo de programación v2. Recibe un Excel por HTTP y escribe en el modelo `cfg`, `ing`, `core` y `rep` preparado para `sqldb-jrb-sabana-dev`. El código está generado; no se han creado recursos, desplegado la aplicación ni ejecutado escrituras en Azure SQL desde esta entrega.
+Implementación Python 3.12, Azure Functions runtime 4 y modelo de programación v2. Recibe un Excel por HTTP y escribe en el modelo `cfg`, `ing`, `core` y `rep` de `sqldb-jrb-sabana-dev`. El componente Excel cuenta con validación previa en Azure. La ampliación PST de esta entrega está preparada localmente y todavía no se ha publicado ni probado de extremo a extremo en Azure.
 
 ## Archivos
 

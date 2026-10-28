@@ -342,7 +342,12 @@ class HttpTests(unittest.TestCase):
                                      body=json.dumps(document).encode("utf-8"))
 
     def test_azure_functions_can_index_the_app(self):
-        self.assertEqual(len(self.entry.app.get_functions()), 1)
+        functions = self.entry.app.get_functions()
+        names = {f.get_function_name() for f in functions}
+        self.assertEqual(len(names), 10)
+        self.assertIn("ConsolidarSabana", names)
+        self.assertIn("IniciarIngestaPst", names)
+        self.assertIn("OrquestarPst", names)
 
     def test_invalid_request_returns_400_without_sql(self):
         response = self.entry.consolidar_sabana(self.request({}))

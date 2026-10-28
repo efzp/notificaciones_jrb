@@ -5,11 +5,14 @@ import os
 from uuid import uuid4
 
 import azure.functions as func
+import azure.durable_functions as df
 
 from sabana.domain import AppError, Payload
 from sabana.service import consolidate
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = df.DFApp(http_auth_level=func.AuthLevel.FUNCTION)
+from pst.functions import bp as pst_blueprint
+app.register_functions(pst_blueprint)
 
 
 @app.function_name(name="ConsolidarSabana")
