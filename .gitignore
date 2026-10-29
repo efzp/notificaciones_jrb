@@ -1,12 +1,15 @@
 # Archivo oculto que impide agregar los cambios desde la carpeta padre.
 /.849C9593-D756-4E56-8D6E-42412F2A707B
 
-# Repositorio independiente, con su propio historial y remoto.
-/03_trabajo/function_sabana/
+# Respaldos locales de la migracion de los repositorios.
+/.respaldo_git/
 
 # Fuentes, evidencia y resultados de procesamiento locales.
+/01_alcance/
 /02_fuentes/
 /04_evidencias/
+/05_hallazgos/
+/06_informe/
 inputs/
 resultados/
 /03_trabajo/actualizacion_sabana/20261027_actualizacion/
@@ -18,11 +21,14 @@ resultados/
 *.[xX][lL][sS]
 *.[xX][lL][sS][xX]
 *.[xX][lL][sS][mM]
+*.[xX][lL][sS][bB]
 *.[cC][sS][vV]
 *.[tT][sS][vV]
 *.[eE][mM][lL]
 *.[mM][sS][gG]
 *.[zZ][iI][pP]
+*.[pP][dD][fF]
+*.[dD][oO][cC][xX]
 *.jsonl
 *.ndjson
 *.log

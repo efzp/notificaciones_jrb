@@ -1,0 +1,66 @@
+{
+  "fecha": "2026-10-26",
+  "python": "3.12.14",
+  "pruebas_locales": {
+    "ejecutadas": 33,
+    "fallos": 0,
+    "errores": 0,
+    "omitidas": 0,
+    "sintaxis_python_ast": true,
+    "indexacion_azure_functions": true,
+    "alcance": "Parser, contrato HTTP, hashes, parametros SQL, reutilizacion de hechos, reintento publicado y control de rollback con conexiones simuladas."
+  },
+  "corpus_real": {
+    "archivos": 334,
+    "filas_detectadas": 12939,
+    "filas_interpretadas": 12939,
+    "casos_unicos": 11167,
+    "casos_con_dos_aseguradoras": 1335,
+    "archivos_bloqueados": 0,
+    "segundos_lectura_local": 8.468,
+    "incidencias": {
+      "COLUMNAS_FUERA_DEL_BLOQUE": 1,
+      "FECHA_INVALIDA": 22,
+      "FECHA_FUERA_RANGO": 3,
+      "COLUMNA_ADICIONAL": 4,
+      "ENCABEZADO_INFERIDO": 1
+    },
+    "mapping_recuperado": {
+      "campo": "eps",
+      "columna": 30,
+      "anclas": 49,
+      "valores_recuperados": 21,
+      "regla_especial_por_columna": false
+    },
+    "alcance": "Lectura y normalizacion sin inserciones SQL. No mide la latencia de Azure."
+  },
+  "dependencias_directas_probadas": {
+    "azure-functions": "1.25.0",
+    "azure-identity": "1.27.0",
+    "openpyxl": "3.1.5",
+    "pyodbc": "5.3.0",
+    "defusedxml": "0.7.1"
+  },
+  "github_actions": {
+    "workflow": ".github/workflows/deploy-function.yml",
+    "yaml_validado": true,
+    "autenticacion": "OIDC con identidad de publicacion separada",
+    "id_token_solo_job_deploy": true,
+    "pruebas_antes_de_publicar": true,
+    "rama_publicacion": "main",
+    "build_remoto_flex": true,
+    "preparacion_paquete_verificada": true,
+    "archivos_runtime": 8,
+    "ejecutado_en_github": false
+  },
+  "integracion_azure_sql": {
+    "ejecutada": false,
+    "pendiente": "Desplegar con identidad administrada, conceder rol y acceso de red, ejecutar la verificacion del modelo, cargar un Excel piloto y repetirlo para validar idempotencia y tiempos reales."
+  },
+  "despliegue_azure": {
+    "ejecutado": false,
+    "recursos_creados": false,
+    "credenciales_incluidas": false,
+    "excel_incluidos_en_paquete": false
+  }
+}
