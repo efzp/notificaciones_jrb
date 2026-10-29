@@ -1,0 +1,48 @@
+# Archivo oculto que impide agregar los cambios desde la carpeta padre.
+/.849C9593-D756-4E56-8D6E-42412F2A707B
+
+# Repositorio independiente, con su propio historial y remoto.
+/03_trabajo/function_sabana/
+
+# Fuentes, evidencia y resultados de procesamiento locales.
+/02_fuentes/
+/04_evidencias/
+inputs/
+resultados/
+/03_trabajo/actualizacion_sabana/20261027_actualizacion/
+/03_trabajo/analisis_estructura_sabana/*.json
+/03_trabajo/modelo_datos/validacion_*.json
+/03_trabajo/validacion_function_azure/**/*.json
+*.[pP][sS][tT]
+*.[oO][sS][tT]
+*.[xX][lL][sS]
+*.[xX][lL][sS][xX]
+*.[xX][lL][sS][mM]
+*.[cC][sS][vV]
+*.[tT][sS][vV]
+*.[eE][mM][lL]
+*.[mM][sS][gG]
+*.[zZ][iI][pP]
+*.jsonl
+*.ndjson
+*.log
+
+# Dependencias, compilaciones y entornos locales.
+/03_trabajo/validacion_pst/
+deps/
+.deps/
+.venv/
+venv/
+node_modules/
+.validacion/
+.validation/
+__pycache__/
+*.py[cod]
+*.pyd
+bin/
+obj/
+
+# Configuracion local con credenciales.
+.env
+.env.*
+local.settings.json
