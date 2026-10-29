@@ -37,10 +37,12 @@ async def start(req: func.HttpRequest, client):
         request = service.request_from(document)
         job_id = request.job_id
         current = await asyncio.wait_for(client.get_status(job_id), timeout=15)
-        if current is None:
+        # El SDK devuelve un DurableOrchestrationStatus falso (no None) si no existe.
+        missing = not current
+        if missing:
             await asyncio.wait_for(client.start_new("OrquestarPst", instance_id=job_id, client_input=request.document()), timeout=15)
         location = req.url.split("?", 1)[0].rstrip("/")+"/"+job_id
-        return response({"id_seguimiento": job_id, "estado": "ACEPTADA" if current is None else current.runtime_status.name,
+        return response({"id_seguimiento": job_id, "estado": "ACEPTADA" if missing else current.runtime_status.name,
                          "consulta_estado": location}, 202, location)
     except AppError as error:
         return response({"codigo": error.code, "mensaje": error.message}, error.status)
@@ -58,7 +60,7 @@ async def status(req: func.HttpRequest, client):
         return response({"codigo": "PST_ID_INVALIDO"}, 400)
     try:
         current = await asyncio.wait_for(client.get_status(job_id), timeout=15)
-        if current is None:
+        if not current:
             return response({"codigo": "PST_NO_ENCONTRADO"}, 404)
         state = current.runtime_status.name
         document = {"id_seguimiento": job_id, "estado": state, "progreso": current.custom_status}
@@ -82,7 +84,7 @@ async def resume(req: func.HttpRequest, client):
         return response({"codigo": "PST_ID_INVALIDO"}, 400)
     try:
         current = await asyncio.wait_for(client.get_status(job_id), timeout=15)
-        if current is None:
+        if not current:
             return response({"codigo": "PST_NO_ENCONTRADO"}, 404)
         if current.runtime_status.name not in ("Failed", "Terminated"):
             return response({"codigo": "PST_NO_REANUDABLE", "estado": current.runtime_status.name}, 409)

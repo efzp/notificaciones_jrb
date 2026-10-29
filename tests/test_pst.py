@@ -10,6 +10,7 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock, Mock, patch
 
 import azure.functions as func
+import azure.durable_functions as df
 
 from pst.domain import PstFailure, PstRequest
 from pst.extract import extract_message, parse_report, text, utc
@@ -157,6 +158,51 @@ class HttpTests(unittest.TestCase):
         return func.HttpRequest(method=method, url="https://app.invalid/api/pst/ingestas",
                                 route_params={"job_id": job_id} if job_id else {},
                                 body=json.dumps(document or DOCUMENT).encode())
+
+    def durable_client(self, code=404, payload=""):
+        # Usar la conversion real del SDK; solo se sustituye el transporte HTTP.
+        client = df.DurableOrchestrationClient(json.dumps({
+            "taskHubName": "PstIngestionV1",
+            "rpcBaseUrl": "http://127.0.0.1:17071/durabletask/",
+            "creationUrls": {}, "managementUrls": {},
+        }))
+        client._get_async_request = AsyncMock(return_value=[code, payload])
+        client._post_async_request = AsyncMock(return_value=[202, {"id": PstRequest(**DOCUMENT).job_id}])
+        return client
+
+    @patch.dict("os.environ", {"PST_DRIVE_ID": "drive"})
+    def test_sdk_missing_instance_starts_a_new_job(self):
+        client = self.durable_client()
+        result = asyncio.run(invoke(start, self.request(), client))
+        self.assertEqual(result.status_code, 202)
+        self.assertEqual(json.loads(result.get_body())["estado"], "ACEPTADA")
+        client._post_async_request.assert_awaited_once()
+        args = client._post_async_request.call_args.args
+        self.assertIn("OrquestarPst", args[0])
+        self.assertEqual(json.loads(args[1]), DOCUMENT)
+
+    def test_sdk_missing_instance_returns_404_for_status_and_resume(self):
+        for endpoint, method in ((status, "GET"), (resume, "POST")):
+            with self.subTest(method=method):
+                client = self.durable_client()
+                result = asyncio.run(invoke(endpoint, self.request(method=method, job_id=PstRequest(**DOCUMENT).job_id), client))
+                self.assertEqual(result.status_code, 404)
+                self.assertEqual(json.loads(result.get_body())["codigo"], "PST_NO_ENCONTRADO")
+                client._post_async_request.assert_not_awaited()
+
+    @patch.dict("os.environ", {"PST_DRIVE_ID": "drive"})
+    def test_sdk_existing_instance_is_not_restarted(self):
+        for state in ("Pending", "Running", "Completed", "Failed"):
+            with self.subTest(state=state):
+                client = self.durable_client(200, {
+                    "instanceId": PstRequest(**DOCUMENT).job_id,
+                    "createdTime": "2026-10-28T23:00:00Z",
+                    "runtimeStatus": state,
+                })
+                result = asyncio.run(invoke(start, self.request(), client))
+                self.assertEqual(result.status_code, 202)
+                self.assertEqual(json.loads(result.get_body())["estado"], state)
+                client._post_async_request.assert_not_awaited()
 
     @patch.dict("os.environ", {"PST_DRIVE_ID": "drive"})
     def test_start_returns_202_without_sql_graph_or_pst_download(self):
