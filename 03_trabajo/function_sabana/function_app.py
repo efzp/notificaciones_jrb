@@ -13,6 +13,8 @@ from sabana.service import consolidate
 app = df.DFApp(http_auth_level=func.AuthLevel.FUNCTION)
 from pst.functions import bp as pst_blueprint
 app.register_functions(pst_blueprint)
+from terceros.functions import bp as terceros_blueprint
+app.register_functions(terceros_blueprint)
 
 
 @app.function_name(name="ConsolidarSabana")

@@ -1,0 +1,35 @@
+{
+  "fecha": "2026-11-03",
+  "version_catalogo": "terceros-v2",
+  "implementacion": "HTTP 202 y Durable Functions con cola SQL, agrupacion, reserva y recuperacion diaria",
+  "suite_local": {
+    "total": 106,
+    "aprobadas": 100,
+    "integraciones_sql_omitidas_por_defecto": 6,
+    "indexacion_sdk_azure_functions": "APROBADA",
+    "paquete_con_blueprint_y_huellas_09_10": "APROBADO"
+  },
+  "integracion_sql_control": {
+    "aprobadas": 5,
+    "duracion_segundos": 75.559,
+    "transacciones_revertidas": true,
+    "publicacion_original_preservada": true,
+    "verificaciones": [
+      "Avisos repetidos no duplican solicitudes",
+      "Varias solicitudes comparten una reserva y bloquean otra reserva simultanea",
+      "Reserva expirada se recupera con token distinto",
+      "Trabajador antiguo no publica ni marca fallo sobre una reserva nueva",
+      "Reintentos y agotamiento del ultimo intento",
+      "Ventana compartida extendida solo por avisos nuevos",
+      "Snapshot conocido completa la solicitud sin duplicar datos",
+      "Aviso nuevo durante ejecucion permanece pendiente",
+      "Fallo despues de publicar y completar revierte toda la transaccion"
+    ]
+  },
+  "sintaxis_sql_12_13_14_scriptdom": "APROBADA",
+  "ddl_o_permisos_aplicados_permanentemente_en_esta_entrega": false,
+  "desplegada_en_azure": false,
+  "prueba_extremo_a_extremo_host_azure_pendiente": true,
+  "productores_jnc_jrb_con_avisos_automaticos_pendientes": true,
+  "autorizaciones_manuales_o_nuevas_reglas_de_dominio": false
+}

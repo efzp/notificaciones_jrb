@@ -19,9 +19,13 @@ def prepare(destination: Path) -> list[str]:
     destination.mkdir(parents=True)
     for name in ("function_app.py", "host.json", "requirements.txt"):
         shutil.copyfile(SOURCE / name, destination / name)
-    for package in ("sabana", "pst"):
+    for package in ("sabana", "pst", "terceros"):
         shutil.copytree(SOURCE / package, destination / package,
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+    # El cargador valida la huella del esquema; estos archivos se leen, no se ejecutan.
+    (destination / "sql").mkdir()
+    for name in ("09_catalogo_terceros.sql", "10_equivalencias_terceros.sql"):
+        shutil.copyfile(SOURCE / "sql" / name, destination / "sql" / name)
     return sorted(str(p.relative_to(destination)).replace("\\", "/")
                   for p in destination.rglob("*") if p.is_file())
 

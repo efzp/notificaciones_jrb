@@ -43,7 +43,7 @@ def summary(document):
             "conteos":payload["conteos"], "version":payload["version"]}
 
 
-def apply(document):
+def apply(document, reservation=None):
     payload = validate_snapshot(document)
     report = summary(document)
     connection = connect("JRB", write=True)
@@ -55,6 +55,9 @@ def apply(document):
                               "@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=10000; SELECT @r;").fetchone()[0]
         if lock < 0:
             raise ValueError("CARGA_TERCEROS_OCUPADA")
+        if reservation is not None:
+            from . import control
+            control.assert_reserved(cursor, reservation)
         required=1 if payload["version"]=="terceros-v1" else 2
         expected_hash = hashlib.sha256(MIGRATIONS[required-1].read_text(encoding="utf-8-sig").encode("utf-8")).digest()
         version = cursor.execute("SELECT sha256 FROM cfg.migracion_terceros WHERE version=?;",required).fetchone()
@@ -63,6 +66,15 @@ def apply(document):
         known = cursor.execute("SELECT id_carga_terceros FROM ing.terceros_carga WHERE sha256=?;",
                                bytes.fromhex(document["sha256"])).fetchone()
         if known:
+            if reservation is not None:
+                current = cursor.execute("SELECT c.id_carga_terceros,c.capturado_utc FROM ing.terceros_publicacion p "
+                                         "JOIN ing.terceros_carga c ON c.id_carga_terceros=p.id_carga_terceros;").fetchone()
+                captured = datetime.fromisoformat(document["capturado_utc"]).replace(tzinfo=None)
+                if current and current[0] != known[0] and captured < current[1]:
+                    raise ValueError("INSTANTANEA_ANTERIOR_A_PUBLICACION")
+                if not current or current[0] != known[0]:
+                    publish(cursor, known[0])
+                control.complete(cursor, reservation, known[0])
             cursor.execute("COMMIT TRANSACTION;")
             return dict(report, id_carga_terceros=known[0], reutilizada=True)
         captured = datetime.fromisoformat(document["capturado_utc"]).replace(tzinfo=None)
@@ -146,10 +158,9 @@ def apply(document):
                   "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?);",equivalences,
                   [integer,binary,text(3),text(20),text(500),integer,integer,integer,text(20),numeric,numeric,numeric,numeric,text(50)])
         # Una sola publicacion visible al finalizar. No se modifican revisiones.
-        if cursor.execute("SELECT id FROM ing.terceros_publicacion WHERE id=1;").fetchone():
-            cursor.execute("UPDATE ing.terceros_publicacion SET id_carga_terceros=? WHERE id=1;", load)
-        else:
-            cursor.execute("INSERT ing.terceros_publicacion(id,id_carga_terceros) VALUES(1,?);", load)
+        publish(cursor, load)
+        if reservation is not None:
+            control.complete(cursor, reservation, load)
         cursor.execute("COMMIT TRANSACTION;")
         return dict(report, id_carga_terceros=load, reutilizada=False)
     except Exception:
@@ -160,3 +171,10 @@ def apply(document):
         raise
     finally:
         connection.close()
+
+
+def publish(cursor, load_id):
+    if cursor.execute("SELECT id FROM ing.terceros_publicacion WHERE id=1;").fetchone():
+        cursor.execute("UPDATE ing.terceros_publicacion SET id_carga_terceros=? WHERE id=1;", load_id)
+    else:
+        cursor.execute("INSERT ing.terceros_publicacion(id,id_carga_terceros) VALUES(1,?);", load_id)

@@ -1,6 +1,6 @@
 # Procesamiento de auditorias de notificaciones JRB
 
-La migracion y carga reproducible del catalogo de entidades y correos se documenta en [TERCEROS_CARGA.md](TERCEROS_CARGA.md). Excluye pacientes, conserva JNC como referencia posterior y ofrece simulacion, instantaneas con SHA-256 y carga transaccional idempotente. Su programacion diaria es una etapa posterior.
+La migracion y carga reproducible del catalogo de entidades y correos se documenta en [TERCEROS_CARGA.md](TERCEROS_CARGA.md). Excluye pacientes, conserva JNC como referencia posterior y ofrece simulacion, instantaneas con SHA-256 y carga transaccional idempotente. La [actualizacion asincrona](TERCEROS_AUTOMATIZACION.md) incorpora avisos HTTP, agrupacion, reservas, reintentos y recuperacion diaria; requiere preparar SQL, permisos, configuracion y desplegar el codigo.
 
 La reevaluacion `terceros-v2` incorpora agrupacion por expresiones regulares y proximidad (umbral 95/100, margen minimo 5), con equivalencias auditables por publicacion. Conserva los IDs originales y deja las propuestas ambiguas para revision. Los resultados de verificacion estan en [VALIDACION_TERCEROS_PROXIMIDAD.json](VALIDACION_TERCEROS_PROXIMIDAD.json).
 

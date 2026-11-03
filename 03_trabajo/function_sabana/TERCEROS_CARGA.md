@@ -1,6 +1,6 @@
 # Catalogo de entidades y correos: migracion y carga inicial
 
-Esta entrega crea el catalogo en `sqldb-jrb-sabana-dev` y un cargador de linea de comandos. No implementa aun el temporizador diario ni modifica el procesamiento HTTP de Excel o PST.
+Esta entrega crea el catalogo en `sqldb-jrb-sabana-dev` y un cargador de linea de comandos. La ampliacion de Functions, reservas y recuperacion diaria se documenta en [TERCEROS_AUTOMATIZACION.md](TERCEROS_AUTOMATIZACION.md); los flujos productores deben incorporar sus avisos al terminar las cargas.
 
 ## Modelo
 
@@ -109,7 +109,7 @@ Las capturas v1 siguen siendo legibles y reejecutables. Una nueva agrupacion cre
 
 La migracion necesita una identidad con permisos DDL en JRB. Crea `rol_carga_terceros` y `rol_revision_terceros` sin asignarlos a usuarios. La carga inicial se ejecuta con la identidad Entra de Azure CLI. Para automatizar despues en Functions se requiere provisionar lectura de las consultas JNC/JRB con una identidad de ejecucion, y asignar el rol de escritura del catalogo en JRB. El rol de revision permite insertar decisiones, no actualizarlas ni borrarlas. La identidad de GitHub no recibe permisos SQL en esta entrega.
 
-El workflow actual ejecuta tambien las pruebas de terceros y de proximidad, pero no aplica este DDL ni ejecuta cargas. El paquete de ejecucion de la Function mantiene su lista existente; el cargador es una herramienta administrativa local. La planificacion diaria, el enlace automatico tras cargas y las aprobaciones manuales de equivalencias son etapas posteriores.
+El workflow ejecuta las pruebas de terceros y de proximidad, pero no aplica DDL ni ejecuta cargas. El paquete incluye ahora el trabajador asincrono y las huellas de los DDL 09/10. La CLI administrativa sigue disponible. La activacion y el enlace de los productores se describen en TERCEROS_AUTOMATIZACION.md; las aprobaciones manuales de equivalencias siguen siendo una etapa posterior.
 
 ## Pruebas
 
@@ -131,10 +131,10 @@ La publicacion 6, sus agregados y la migracion 11 permanecen como historial inac
 
 ## Tabla de control para automatizacion
 
-`sql/12_control_actualizacion_terceros.sql` prepara `ing.terceros_actualizacion` con una fila por revision publicada de carga: JNC/LOTE, JRB/EXCEL o JRB/PST. El script se ejecuta directamente en JRB y todavia no esta integrado en el ejecutor de migraciones ni en Functions. Se valido en el motor con rollback; no quedo aplicado permanentemente.
+`sql/12_control_actualizacion_terceros.sql` prepara `ing.terceros_actualizacion` con una fila por revision publicada de carga: JNC/LOTE, JRB/EXCEL o JRB/PST. El script se ejecuta directamente en JRB y no esta integrado en el ejecutor de migraciones. La Function de automatizacion utiliza esa tabla; requiere instalarla previamente. Las pruebas de desarrollo se ejecutaron en el motor con rollback.
 
 La clave unica de origen, tipo, carga y hash de revision elimina avisos repetidos. Una correccion, reemplazo o inactivacion debe producir una revision distinta. El aviso se registra despues de publicar correctamente el origen. Cada fila contiene solo metadatos de control; no contiene Excel, PST, pacientes ni correos.
 
-El valor predeterminado de disponibilidad es diez minutos despues del aviso. El futuro trabajador puede agrupar las filas elegibles con el mismo `id_ejecucion`; los avisos que lleguen mientras trabaja permanecen pendientes. Los estados son PENDIENTE, EN_PROCESO, REINTENTO, COMPLETADA y AGOTADA. Un trabajo completado referencia una carga del maestro, incluida una carga reutilizada si el contenido no cambio.
+El valor predeterminado de disponibilidad es diez minutos despues del ultimo aviso nuevo pendiente. El trabajador agrupa las filas elegibles con el mismo `id_ejecucion`; los avisos que lleguen mientras trabaja permanecen pendientes. Los estados son PENDIENTE, EN_PROCESO, REINTENTO, COMPLETADA y AGOTADA. Un trabajo completado referencia una carga del maestro, incluida una carga reutilizada si el contenido no cambio.
 
-La tabla no garantiza por si sola una unica ejecucion global. El siguiente componente debe reclamar trabajos en una transaccion con bloqueo de aplicacion, comprobar reservas activas, renovar su vencimiento y recuperar reservas expiradas. Antes de publicar, el trabajador debe verificar en esa misma transaccion su identificador y reserva vigentes, impidiendo que un proceso antiguo publique despues de perder la reserva. La publicacion y la finalizacion de las solicitudes deben confirmarse atomicamente. `version_fila` apoya el control de concurrencia local; no detecta cambios en las bases de origen.
+La tabla no garantiza por si sola una unica ejecucion global. `terceros/control.py` reclama trabajos en una transaccion con bloqueo de aplicacion, comprueba reservas activas, renueva su vencimiento y recupera reservas expiradas. El cargador verifica la reserva dentro de la transaccion de publicacion e impide publicar con una reserva perdida. La publicacion y la finalizacion de las solicitudes se confirman atomicamente. `version_fila` apoya el control de concurrencia local; no detecta cambios en las bases de origen.

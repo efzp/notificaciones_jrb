@@ -15,7 +15,8 @@ def connect(source, write=False):
     if source not in TARGETS or (write and source != "JRB"):
         raise ValueError("DESTINO_NO_PERMITIDO")
     server, database = TARGETS[source]
-    credential = (ManagedIdentityCredential() if os.environ.get("WEBSITE_HOSTNAME")
+    credential = (ManagedIdentityCredential(client_id=os.environ.get("TERCEROS_MANAGED_IDENTITY_CLIENT_ID") or None)
+                  if os.environ.get("WEBSITE_HOSTNAME") or os.environ.get("WEBSITE_INSTANCE_ID")
                   else AzureCliCredential())
     try:
         token = credential.get_token("https://database.windows.net/.default").token.encode("utf-16le")
