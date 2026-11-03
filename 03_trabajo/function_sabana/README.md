@@ -1,5 +1,9 @@
 # Procesamiento de auditorias de notificaciones JRB
 
+La migracion y carga reproducible del catalogo de entidades y correos se documenta en [TERCEROS_CARGA.md](TERCEROS_CARGA.md). Excluye pacientes, conserva JNC como referencia posterior y ofrece simulacion, instantaneas con SHA-256 y carga transaccional idempotente. Su programacion diaria es una etapa posterior.
+
+La reevaluacion `terceros-v2` incorpora agrupacion por expresiones regulares y proximidad (umbral 95/100, margen minimo 5), con equivalencias auditables por publicacion. Conserva los IDs originales y deja las propuestas ambiguas para revision. Los resultados de verificacion estan en [VALIDACION_TERCEROS_PROXIMIDAD.json](VALIDACION_TERCEROS_PROXIMIDAD.json).
+
 La ingestión asíncrona de PST está implementada en `pst/`; consultar [configuración, SQL y Power Automate](PST_CONFIGURACION.md). Devuelve HTTP 202, usa Durable Functions y requiere aplicar `sql/08_pst_asincrono.sql` después del DDL PST. Este componente todavía requiere configuración de permisos y piloto en Azure.
 
 Repositorio de codigo y configuracion para procesar reportes de SharePoint, tabularizar PST, cruzar evidencias de envio y lectura, y procesar insumos de auditoria. Los archivos fuente permanecen fuera del repositorio.

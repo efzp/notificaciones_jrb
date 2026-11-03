@@ -7,3 +7,4 @@ azure-functions-durable==1.7.0
 azure-storage-blob==12.28.0
 requests==2.34.2
 libpff-python==20260926
+rapidfuzz==3.14.6

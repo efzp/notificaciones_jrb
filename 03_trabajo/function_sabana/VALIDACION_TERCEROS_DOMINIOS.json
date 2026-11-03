@@ -1,0 +1,81 @@
+{
+  "fecha": "2026-10-29",
+  "version_regla": "terceros-v3",
+  "version_dominio": "dominio-v1",
+  "politica": {
+    "minimo_casos_distintos_jnc": 30,
+    "minimo_casos_dominante_rol": 30,
+    "dominancia_porcentaje": 80,
+    "ventaja_puntos_porcentuales": 20,
+    "pacientes_excluidos": true,
+    "proveedores_publicos_no_unifican_entidades": true,
+    "mapeo_inverso_solo_referencia_jnc": true,
+    "entidades_y_casos_originales_sin_modificar": true,
+    "jnc_solo_lectura": true
+  },
+  "migracion_11": {
+    "sha256": "dc5a48f587b4bac36206aae41c81b1698f6fe1dcbb5b1360cc3f81ce5a1db28b",
+    "aplicada_en_motor": true
+  },
+  "publicacion": {
+    "id_carga_terceros": 6,
+    "sha256": "d1f45ab8a5826394206fcf72b09d43542b868b0241e299b4b1d69f58c9872d1c",
+    "asociaciones_antes": 1393,
+    "asociaciones_despues": 491,
+    "dominios_en_maestro_antes": 764,
+    "dominios_en_maestro_despues": 70,
+    "dominios_evaluados": 5177,
+    "dominios_elegibles": 92,
+    "dominios_excluidos": 5085,
+    "nombres_por_dominio_rol_mapeados": 103,
+    "referencias_origen_mapeadas": 3373,
+    "asociaciones_jnc": 449,
+    "asociaciones_jrb_pst": 42,
+    "grupos_pendientes_antes": 12568,
+    "grupos_pendientes_despues": 3979,
+    "coincide_jrb_jnc": 0,
+    "difiere_de_jnc": 4,
+    "solo_observado_jrb": 38,
+    "solo_referencia_jnc": 449,
+    "autorizaciones_o_decisiones_manuales_creadas": 0
+  },
+  "estados_dominio_rol": {
+    "SOPORTE_INSUFICIENTE": 102,
+    "DOMINANTE": 35,
+    "SIN_DOMINANCIA": 11,
+    "ENTIDAD_SIN_EQUIVALENCIA": 26,
+    "PROVEEDOR_COMPARTIDO": 12
+  },
+  "almacenamiento_nuevas_tablas_antes_de_prueba_rollback": {
+    "usado_kb": 432,
+    "reservado_kb": 472
+  },
+  "pruebas": {
+    "suite_sin_sql_aprobadas": 94,
+    "integracion_omitida_en_suite_normal": 1,
+    "integracion_sql_aprobada": 1,
+    "integracion_sql_duracion_segundos": 56.592,
+    "verificado_en_sql": [
+      "Reejecucion de la misma instantanea sin duplicados ni cambio de publicacion",
+      "Ninguna asociacion del corte utiliza un dominio ausente o inferior al minimo",
+      "Conteos de los tres agregados de dominio iguales a la instantanea",
+      "Rollback de carga completa, incluidos agregados nuevos, ante fallo antes de publicar",
+      "Restriccion de exclusion de pacientes"
+    ]
+  },
+  "estado": "REVERTIDO_POR_SOLICITUD_DEL_USUARIO",
+  "reversion": {
+    "fecha_utc": "2026-10-29T21:24:30.503693+00:00",
+    "publicacion_vigente": 4,
+    "version_regla_vigente": "terceros-v2",
+    "asociaciones_vigentes": 1393,
+    "dominios_vigentes": 764,
+    "pendientes_vigentes": 12568,
+    "mapeos_por_dominio_vigentes": 0,
+    "cargador_restaurado_v2": true,
+    "historico_v3_conservado": true,
+    "pruebas_locales_aprobadas": 82,
+    "integracion_omitida_en_suite_normal": 1,
+    "verificado_en_sql": true
+  }
+}

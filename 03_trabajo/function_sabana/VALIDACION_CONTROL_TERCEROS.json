@@ -1,0 +1,18 @@
+{
+  "fecha": "2026-10-29",
+  "archivo": "sql/12_control_actualizacion_terceros.sql",
+  "tabla": "ing.terceros_actualizacion",
+  "sintaxis_scriptdom": "APROBADA",
+  "validacion_motor_sql_con_rollback": "APROBADA",
+  "aplicada_permanentemente": false,
+  "publicacion_vigente_conservada": 4,
+  "verificaciones": [
+    "DDL ejecutable y repetible",
+    "Aviso repetido rechazado por clave unica",
+    "Origen incompatible y reserva incompleta rechazados",
+    "Reintento y finalizacion con referencia al maestro",
+    "Nueva revision pendiente durante ejecucion de otra revision",
+    "Limite de intentos registrado",
+    "Rollback completo del DDL y datos sinteticos"
+  ]
+}

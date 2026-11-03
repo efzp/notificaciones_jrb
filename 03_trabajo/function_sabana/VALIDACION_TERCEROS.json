@@ -1,0 +1,48 @@
+{
+  "fecha": "2026-10-29",
+  "base_destino": "sqldb-jrb-sabana-dev",
+  "base_referencia_solo_lectura": "sqldb-jnc-notif-dev",
+  "version_regla": "terceros-v1",
+  "migracion": {
+    "archivo": "sql/09_catalogo_terceros.sql",
+    "sha256": "cfcaf17c5156aa3710826c5ea68096b40142a2f2daf86e144324182f83ea9d7c",
+    "sintaxis_scriptdom": "OK",
+    "aplicacion_en_motor": "OK",
+    "reejecucion_sin_recrear_objetos": "OK"
+  },
+  "pruebas": {
+    "suite_sin_sql_aprobadas": 73,
+    "integracion_omitida_en_suite_normal": 1,
+    "integracion_sql_ejecutada_y_aprobada": 1,
+    "integracion_comprueba": [
+      "misma instantanea no duplica registros",
+      "fallo controlado antes de publicacion revierte la transaccion",
+      "restriccion SQL rechaza rol paciente"
+    ]
+  },
+  "carga_inicial": {
+    "id_carga_terceros": 1,
+    "sha256_instantanea": "a610957e2e3437ccd067a8634c107b5dd13f98d73975ebe4ee37d62c357fd3b1",
+    "capturado_utc": "2026-10-29T18:27:55.527000",
+    "asociaciones": 941,
+    "asociaciones_jnc": 802,
+    "asociaciones_jrb_pst": 139,
+    "grupos_pendientes": 13122,
+    "coincide_jrb_jnc": 0,
+    "difiere_de_jnc": 8,
+    "solo_observado_jrb": 131,
+    "solo_referencia_jnc": 802,
+    "datos_de_pacientes_en_catalogo": false,
+    "decisiones_manuales_creadas": 0,
+    "espacio_tablas_nuevas_usado_mb": 4.63,
+    "espacio_tablas_nuevas_reservado_mb": 4.88
+  },
+  "limites": [
+    "JNC posterior no equivale a autorizacion historica JRB",
+    "La equivalencia inicial usa nombres normalizados unicos, no identificacion legal por NIT",
+    "La regla inicial PST resolvio asociaciones de empleadores; otros roles o casos ambiguos no se fuerzan",
+    "La mayor parte de los pendientes corresponde a nombres JNC sin equivalencia JRB",
+    "Las frecuencias no son aprobaciones de contactos",
+    "El temporizador, los disparadores automaticos y las aprobaciones de equivalencias no estan incluidos"
+  ]
+}

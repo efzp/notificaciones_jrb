@@ -1,0 +1,57 @@
+{
+  "fecha": "2026-10-29",
+  "version_regla": "terceros-v2",
+  "version_normalizacion": "regex-proximidad-v1",
+  "umbral": 95,
+  "margen_minimo": 5,
+  "umbral_revision": 85,
+  "metrica": "Firmas completas compatibles iguales: 100; en otro caso 0.90 ratio tokens ordenados + 0.10 ratio texto normalizado",
+  "puntaje_no_es_probabilidad": true,
+  "calibracion_umbral_93_95_97": {
+    "poblacion": "7738 nombres por rol pendientes de la carga inicial",
+    "nombres_asignados_93": 444,
+    "nombres_asignados_95": 410,
+    "nombres_asignados_97": 374,
+    "es_evaluacion_de_cobertura_no_precision_verificada": true
+  },
+  "migracion_10": {
+    "sha256": "0612b379487ace343fd908bc9147d3ee3a0e0c8380f2eda9d9565454b0471568",
+    "aplicada_en_motor": true,
+    "entidades_originales_modificadas": false
+  },
+  "publicacion": {
+    "id_carga_terceros": 4,
+    "sha256": "36ea8b55c2a47b5c41e702a5bb74ab523a3a80cf0ca29feeb1f2de29a137bf5f",
+    "asociaciones_antes": 941,
+    "asociaciones_despues": 1393,
+    "asociaciones_jnc_antes": 802,
+    "asociaciones_jnc_despues": 1257,
+    "asociaciones_jrb_pst": 139,
+    "variantes_entidad_rol_jrb_agrupadas": 1300,
+    "grupos_pendientes_antes": 13122,
+    "grupos_pendientes_despues": 12568,
+    "coincide_jrb_jnc": 3,
+    "difiere_de_jnc": 19,
+    "solo_observado_jrb": 117,
+    "solo_referencia_jnc": 1254,
+    "autorizaciones_o_decisiones_manuales_creadas": 0,
+    "pacientes_excluidos": true
+  },
+  "pruebas": {
+    "suite_sin_sql_aprobadas": 82,
+    "integracion_omitida_en_suite_normal": 1,
+    "integracion_sql_aprobada": 1,
+    "protecciones": [
+      "formas societarias incompatibles",
+      "roles EPS y ARL incompatibles",
+      "calificadores Vida y Generales",
+      "numeros identificadores distintos",
+      "margen insuficiente entre candidatos",
+      "nombres cortos sin coincidencia exacta",
+      "subconjuntos de nombres sin puntaje perfecto",
+      "enlace completo sin agrupacion transitiva",
+      "nombres de relleno excluidos",
+      "hash y orden deterministas"
+    ]
+  }
+}
