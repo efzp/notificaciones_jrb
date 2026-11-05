@@ -1,0 +1,60 @@
+{
+  "fecha": "2026-11-04",
+  "version_parser": "canopus-v1",
+  "endpoint": "POST /api/canopus/cargas",
+  "proceso": "base64 -> Blob privado -> Durable activity -> publicacion atomica SQL JRB",
+  "reglas": {
+    "vinculo": "cedula",
+    "prioridad": ["CONSOLIDADO", "CANOPUS paciente/empleador", "MAESTRO_TERCEROS institucional"],
+    "umbral_empleador": 95,
+    "margen_empleador": 5,
+    "correo_electronicofe": "por_definir / REVISION",
+    "datos_clinicos_en_sql": false,
+    "contenido_excel_en_historial_durable": false
+  },
+  "corpus_real": {
+    "archivo": "AUDIENCIAS JUNIO-JULIO Canopus.XLSX",
+    "sha256": "cbcdb2226df3eb2b777a1906b0d51c818bac2a540a08ab4ab398efc135d79502",
+    "filas": 2750,
+    "fechas_revision": 0,
+    "contactos": 7124,
+    "contactos_revision": 2017,
+    "empleadores_asociados": 2296,
+    "empleadores_ambiguos": 247,
+    "empleadores_sin_entidad": 47,
+    "empleadores_no_aplica": 160
+  },
+  "suite_local": {
+    "total": 129,
+    "aprobadas": 115,
+    "omitidas_sql_opt_in": 14,
+    "fallidas": 0,
+    "indexacion_azure_functions": "aprobada",
+    "paquete_github_incluye_canopus": true
+  },
+  "integracion_sql_cargador": {
+    "base": "sqldb-jrb-sabana-dev",
+    "pruebas_aprobadas": 4,
+    "duracion_segundos": 65.821,
+    "transacciones_exteriores_revertidas": true,
+    "conteos_originales_y_publicacion_terceros_preservados": true,
+    "incluye_corpus_real_completo": true,
+    "comprobaciones": [
+      "Insercion real de las 2750 filas y 7124 registros de contacto",
+      "Repeticion de actividad sin duplicar filas ni direcciones",
+      "Evento anterior e igual fecha con diferente contenido no reemplazan la carga vigente",
+      "Contenido historico reutilizado para una revision posterior",
+      "Fallo despues de filas/direcciones revierte escrituras y conserva carga vigente",
+      "Registrar error no invalida una carga publicada"
+    ]
+  },
+  "limites_validacion": {
+    "identidad_sql_pruebas": "AzureCliCredential del desarrollador",
+    "llamada_http_nube_realizada": false,
+    "blob_nube_y_rbac_identidad_administrada_validados": false,
+    "deploy_realizado_en_esta_entrega": false,
+    "datos_canopus_publicados_permanentemente": false,
+    "flujo_powerautomate_creado": false,
+    "notificaciones_pendientes_y_cruce_pst_implementados": false
+  }
+}

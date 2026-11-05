@@ -15,6 +15,8 @@ from pst.functions import bp as pst_blueprint
 app.register_functions(pst_blueprint)
 from terceros.functions import bp as terceros_blueprint
 app.register_functions(terceros_blueprint)
+from canopus.functions import bp as canopus_blueprint
+app.register_functions(canopus_blueprint)
 
 
 @app.function_name(name="ConsolidarSabana")

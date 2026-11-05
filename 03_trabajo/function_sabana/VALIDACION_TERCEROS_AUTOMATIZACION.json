@@ -28,8 +28,54 @@
   },
   "sintaxis_sql_12_13_14_scriptdom": "APROBADA",
   "ddl_o_permisos_aplicados_permanentemente_en_esta_entrega": false,
-  "desplegada_en_azure": false,
-  "prueba_extremo_a_extremo_host_azure_pendiente": true,
+  "desplegada_en_azure": true,
+  "prueba_extremo_a_extremo_host_azure_pendiente": false,
   "productores_jnc_jrb_con_avisos_automaticos_pendientes": true,
-  "autorizaciones_manuales_o_nuevas_reglas_de_dominio": false
+  "autorizaciones_manuales_o_nuevas_reglas_de_dominio": false,
+  "prueba_real_azure": {
+    "fecha_colombia": "2026-11-03",
+    "resultado": "APROBADA",
+    "commit_desplegado": "c8b49495b5ec53a663f884f21e1e08cd0d75fa8e",
+    "origen_aviso": "JRB/EXCEL",
+    "id_carga_origen": "348",
+    "id_actualizacion": 10,
+    "estados_observados": [
+      "PENDIENTE",
+      "EN_PROCESO",
+      "COMPLETADA"
+    ],
+    "intentos": 1,
+    "espera_segundos": 601.496,
+    "procesamiento_segundos": 54.081,
+    "horas_colombia": {
+      "creado_utc": "2026-11-03T19:07:39.028000-05:00",
+      "inicio_intento_utc": "2026-11-03T19:17:40.524000-05:00",
+      "finalizado_utc": "2026-11-03T19:18:34.605000-05:00"
+    },
+    "publicacion_antes": 4,
+    "publicacion_despues": 9,
+    "version_catalogo": "terceros-v2",
+    "asociaciones_antes": 1393,
+    "asociaciones_despues": 1393,
+    "pendientes_antes": 12568,
+    "pendientes_despues": 12568,
+    "dominios_vigentes": 764,
+    "pacientes_en_maestro": 0,
+    "respaldo_por_origen": {
+      "JNC": 1257,
+      "JRB_PST": 139
+    },
+    "duplicado_durante_espera": {
+      "http": 202,
+      "mismo_seguimiento": true
+    },
+    "duplicado_despues_completar": {
+      "http": 202,
+      "estado": "Completed",
+      "mismo_seguimiento": true,
+      "sin_nueva_carga_o_solicitud": true
+    },
+    "lectura_jnc_y_jrb_con_identidad_de_function": "VALIDADA",
+    "codigo_ultimo_error": null
+  }
 }

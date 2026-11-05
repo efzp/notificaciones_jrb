@@ -19,7 +19,7 @@ def prepare(destination: Path) -> list[str]:
     destination.mkdir(parents=True)
     for name in ("function_app.py", "host.json", "requirements.txt"):
         shutil.copyfile(SOURCE / name, destination / name)
-    for package in ("sabana", "pst", "terceros"):
+    for package in ("sabana", "pst", "terceros", "canopus"):
         shutil.copytree(SOURCE / package, destination / package,
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
     # El cargador valida la huella del esquema; estos archivos se leen, no se ejecutan.

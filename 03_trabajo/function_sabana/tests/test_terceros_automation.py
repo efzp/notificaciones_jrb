@@ -178,6 +178,8 @@ class PackagingTests(unittest.TestCase):
             destination=Path(folder)/'deploy'
             files=prepare(destination)
             self.assertIn('terceros/functions.py',files)
+            self.assertIn('canopus/functions.py',files)
+            self.assertIn('canopus/repository.py',files)
             self.assertIn('sql/09_catalogo_terceros.sql',files)
             self.assertIn('sql/10_equivalencias_terceros.sql',files)
             self.assertFalse(any('resultados' in f or f.endswith('.gz') or '11_dominios' in f for f in files))

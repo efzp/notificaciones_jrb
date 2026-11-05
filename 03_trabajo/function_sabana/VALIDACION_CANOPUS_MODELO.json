@@ -1,0 +1,30 @@
+{
+  "fecha": "2026-11-04",
+  "archivo": "sql/15_contactos_canopus_consolidado.sql",
+  "sha256": "42826d26007cc2adcda62ade37ebd35343c54178dbbbf315a79817c33e588a2c",
+  "vinculo": "cedula",
+  "fecha_audiencia_y_reparto_solo_procedencia": true,
+  "prioridad": {
+    "CONSOLIDADO": 10,
+    "CANOPUS_PACIENTE_EMPLEADOR": 20,
+    "MAESTRO_TERCEROS": 30
+  },
+  "validacion_sql": {
+    "pruebas_aprobadas": 4,
+    "duracion_segundos": 26.36,
+    "transacciones_revertidas": true,
+    "publicacion_original_preservada": true,
+    "comprobaciones": [
+      "Vinculo por cedula con fecha y reparto distintos",
+      "Consolidado desplaza Canopus y conserva sus multiples correos",
+      "Correo en revision no bloquea Canopus utilizable",
+      "Canopus desplaza maestro para empleador de la misma entidad",
+      "Sin entidad identificada se conserva respaldo del maestro",
+      "Carga Canopus no vigente excluida",
+      "Correo no utilizable y rol por definir no pueden marcarse utilizables"
+    ]
+  },
+  "aplicado_permanentemente": false,
+  "cargador_canopus_implementado": false,
+  "funcion_desplegada_modificada": false
+}
